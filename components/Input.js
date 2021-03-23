@@ -6,6 +6,7 @@ const Input = (props) => {
   const { addTodo } = props;
 
   const handleAddTodo = () => {
+    if (!value) return;
     addTodo(value);
     setValue("");
   };
@@ -13,7 +14,7 @@ const Input = (props) => {
   return (
     <View>
       <TextInput
-        placeholder="Enter Text"
+        placeholder="What todo?"
         onChangeText={(txt) => {
           setValue(txt);
         }}
