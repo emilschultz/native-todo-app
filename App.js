@@ -1,13 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Item from "./components/Item";
 
-const App () =>
- {
-  return(
-    <View>
-      <Text>Heyhey, dette er min native app</Text>
+const App = () => {
+  const [todos, setTodos] = useState(["Mælk", "Brød", "Pasta", "Frugt"]);
+
+  const handlePress = () => {
+    setTodos("dette er min nye tekst");
+  };
+
+  const addTodo = (todo) => {
+    setTodos([...todos, todo]);
+  };
+
+  const handleRemove = (index) => {
+    setTodos(
+      todos.filter((item, x) => {
+        return index !== x;
+      })
+    );
+  };
+
+  return (
+    <View style={styles.wrapper}>
+      {todos.map((item, index) => {
+        return <Item item={item} index={index} removeItem={handleRemove} />;
+      })}
     </View>
-  )
-}
+  );
+};
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: 400,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  text: {
+    fontSize: 22,
+    textAlign: "center",
+  },
+});
+
 export default App;
