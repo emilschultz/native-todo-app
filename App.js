@@ -2,13 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Item from "./components/Item";
+import Input from "./components/Input";
 
 const App = () => {
   const [todos, setTodos] = useState(["Mælk", "Brød", "Pasta", "Frugt"]);
-
-  const handlePress = () => {
-    setTodos("dette er min nye tekst");
-  };
 
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
@@ -27,6 +24,7 @@ const App = () => {
       {todos.map((item, index) => {
         return <Item item={item} index={index} removeItem={handleRemove} />;
       })}
+      <Input addTodo={addTodo} />
     </View>
   );
 };
